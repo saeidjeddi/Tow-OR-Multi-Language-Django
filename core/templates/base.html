@@ -1,0 +1,51 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html {% if LANGUAGE_CODE == 'fa' %}lang="fa"{% else %}lang="en"{% endif %}>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/css.css' %}">
+{% if LANGUAGE_CODE == 'fa' %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/rtl.css' %}">
+{% endif %}
+</head>
+<body>
+  <header>
+    <h1>{% translate 'Site'  %}  {% translate "Title" %}</h1>
+    <nav>
+      <ul>
+        <li><a href="#">{% translate "Home "  %}</a></li>
+        <li><a href="#">{% translate "About" %}</a></li>
+        <li><a href="#">{% translate "Services"  %}</a></li>
+        <li><a href="#">{% translate "Contact"  %}</a></li>
+<span class="d-flex justify-content-end">
+          <li><a href="{% url 'langs' %}?lang=en&next=/en/{{ request.path| slice:'4:' }}">{% translate "EN"  %}</a></li>
+          <li><a href="{% url 'langs' %}?lang=fa&next=/fa/{{ request.path| slice:'4:' }}">{% translate "FA"  %}</a></li>
+</span>
+      </ul>
+
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+
+
+        {% block context %}
+     	
+        {% endblock %}
+     
+    </main>
+
+    <footer>
+      <p>&copy; {% translate '2024' %} {% translate 'saeed' %} {% translate 'jeddi' %} </p>
+    </footer>
+  </section>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  </body>
+  </html>

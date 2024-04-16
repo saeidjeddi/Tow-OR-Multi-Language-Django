@@ -1,0 +1,7 @@
+html {
+    direction: rtl;
+  }
+.d-flex.justify-content-end {
+    position: relative;
+    bottom: 51%;
+  }
